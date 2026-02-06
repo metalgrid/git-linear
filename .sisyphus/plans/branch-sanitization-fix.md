@@ -185,9 +185,9 @@ func (e BranchEditor) Update(msg tea.Msg) (BranchEditor, tea.Cmd) {
 - `internal/tui/update.go:116-119` - Call site for NewBranchEditor
 
 **Acceptance Criteria**:
-- [ ] `go test ./... -v` - all 44+ tests pass
-- [ ] `go build ./cmd/git-linear` succeeds
-- [ ] Hands-on QA: branch editor shows sanitized name
+- [x] `go test ./... -v` - all 44+ tests pass
+- [x] `go build ./cmd/git-linear` succeeds
+- [x] Hands-on QA: branch editor shows sanitized name
 
 **Commit**: NO (verification only, or small fix if needed)
 
@@ -208,9 +208,9 @@ go build -o git-linear ./cmd/git-linear
 ```
 
 ### Final Checklist
-- [ ] Branch names never exceed 32 characters
-- [ ] Editor shows sanitized text (lowercase, hyphens, no special chars)
-- [ ] Default suggestion is pre-sanitized
-- [ ] Real-time sanitization as user types
-- [ ] All tests pass (44+)
-- [ ] No breaking changes to TUI flow
+- [x] Branch names never exceed 32 characters
+- [x] Editor shows sanitized text (lowercase, hyphens, no special chars)
+- [x] Default suggestion is pre-sanitized
+- [x] Real-time sanitization as user types
+- [x] All tests pass (44+)
+- [x] No breaking changes to TUI flow
