@@ -1,18 +1,11 @@
 package tui_test
 
 import (
-	"testing"
-
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/user/git-linear/internal/linear"
 	"github.com/user/git-linear/internal/tui"
 )
-
-func TestIssueList(t *testing.T) {
-	RegisterFailHandler(Fail)
-	RunSpecs(t, "IssueList Suite")
-}
 
 var _ = Describe("IssueItem", func() {
 	var issue linear.Issue

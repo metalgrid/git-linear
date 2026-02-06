@@ -1,17 +1,10 @@
 package tui_test
 
 import (
-	"testing"
-
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/user/git-linear/internal/tui"
 )
-
-func TestBranchEdit(t *testing.T) {
-	RegisterFailHandler(Fail)
-	RunSpecs(t, "BranchEdit Suite")
-}
 
 var _ = Describe("BranchEditor", func() {
 	Describe("NewBranchEditor", func() {
