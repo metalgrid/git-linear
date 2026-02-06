@@ -5,11 +5,11 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/metalgrid/git-linear/internal/auth"
+	"github.com/metalgrid/git-linear/internal/git"
+	"github.com/metalgrid/git-linear/internal/linear"
+	"github.com/metalgrid/git-linear/internal/tui"
 	"github.com/spf13/cobra"
-	"github.com/user/git-linear/internal/auth"
-	"github.com/user/git-linear/internal/git"
-	"github.com/user/git-linear/internal/linear"
-	"github.com/user/git-linear/internal/tui"
 )
 
 var rootCmd = &cobra.Command{

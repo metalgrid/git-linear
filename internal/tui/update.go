@@ -5,8 +5,8 @@ import (
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/user/git-linear/internal/branch"
-	"github.com/user/git-linear/internal/git"
+	"github.com/metalgrid/git-linear/internal/branch"
+	"github.com/metalgrid/git-linear/internal/git"
 )
 
 // Init implements tea.Model

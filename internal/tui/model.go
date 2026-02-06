@@ -2,7 +2,7 @@ package tui
 
 import (
 	"github.com/charmbracelet/bubbles/list"
-	"github.com/user/git-linear/internal/linear"
+	"github.com/metalgrid/git-linear/internal/linear"
 )
 
 // Model is the main TUI model

@@ -1,10 +1,10 @@
 package tui_test
 
 import (
+	"github.com/metalgrid/git-linear/internal/linear"
+	"github.com/metalgrid/git-linear/internal/tui"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/user/git-linear/internal/linear"
-	"github.com/user/git-linear/internal/tui"
 )
 
 var _ = Describe("IssueItem", func() {

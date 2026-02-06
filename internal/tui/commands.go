@@ -2,7 +2,7 @@ package tui
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/user/git-linear/internal/git"
+	"github.com/metalgrid/git-linear/internal/git"
 )
 
 // loadIssuesCmd fetches issues from Linear

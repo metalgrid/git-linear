@@ -8,7 +8,7 @@ import (
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/user/git-linear/internal/branch"
+	"github.com/metalgrid/git-linear/internal/branch"
 )
 
 var prefixStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("240"))

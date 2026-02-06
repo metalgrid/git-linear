@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/metalgrid/git-linear/internal/auth"
+	"github.com/metalgrid/git-linear/internal/linear"
 	"github.com/pkg/browser"
 	"github.com/spf13/cobra"
-	"github.com/user/git-linear/internal/auth"
-	"github.com/user/git-linear/internal/linear"
 	"golang.org/x/term"
 )
 
