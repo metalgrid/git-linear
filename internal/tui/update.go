@@ -28,6 +28,10 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.state = StateIssueList
 				return m, nil
 			}
+			if m.state == StateConfirm {
+				m.state = StateBranchEdit
+				return m, m.branchEditor.Focus()
+			}
 			if m.state == StateExistingBranch {
 				m.state = StateIssueList
 				return m, nil
