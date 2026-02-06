@@ -34,10 +34,10 @@ var _ = Describe("Sanitize", func() {
 		Expect(Sanitize("DEV-1", "a - - b")).To(Equal("dev-1-a-b"))
 	})
 
-	It("truncates to max 60 chars", func() {
+	It("truncates to max 32 chars", func() {
 		long := strings.Repeat("a", 100)
 		result := Sanitize("DEV-123", long)
-		Expect(len(result)).To(BeNumerically("<=", 60))
+		Expect(len(result)).To(BeNumerically("<=", 32))
 		Expect(result).NotTo(HaveSuffix("-"))
 	})
 

@@ -13,7 +13,7 @@ import (
 // - Remove all chars except [a-z0-9-]
 // - Collapse multiple hyphens to single
 // - Strip leading/trailing hyphens
-// - Max total length: 60 chars (truncate title part if needed)
+// - Max total length: 32 chars (truncate title part if needed)
 // - If title becomes empty after sanitization, return just identifier
 func Sanitize(identifier, title string) string {
 	// Lowercase identifier
@@ -43,13 +43,13 @@ func Sanitize(identifier, title string) string {
 	// Combine identifier and title
 	result := identifier + "-" + title
 
-	// Truncate to max 60 chars if needed
-	if len(result) > 60 {
+	// Truncate to max 32 chars if needed
+	if len(result) > 32 {
 		// Calculate how much space we have for the title
-		maxTitleLen := 60 - len(identifier) - 1 // -1 for the hyphen between identifier and title
+		maxTitleLen := 32 - len(identifier) - 1 // -1 for the hyphen between identifier and title
 		if maxTitleLen < 1 {
 			// If identifier itself is too long, just return it truncated
-			return identifier[:60]
+			return identifier[:32]
 		}
 		// Truncate title and remove trailing hyphen if present
 		title = title[:maxTitleLen]
