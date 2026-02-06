@@ -34,6 +34,7 @@ require (
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/onsi/ginkgo/v2 v2.28.1 // indirect
 	github.com/onsi/gomega v1.39.1 // indirect
+	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/sahilm/fuzzy v0.1.1 // indirect
 	github.com/spf13/cobra v1.10.2 // indirect

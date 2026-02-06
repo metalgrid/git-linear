@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/pkg/browser"
 	"github.com/spf13/cobra"
 	"github.com/user/git-linear/internal/auth"
 	"github.com/user/git-linear/internal/linear"
@@ -22,6 +23,21 @@ func init() {
 }
 
 func runAuth(cmd *cobra.Command, args []string) error {
+	fmt.Println("To create a Linear API key:")
+	fmt.Println("  1. Go to Linear Settings → Account → Security")
+	fmt.Println("  2. Under 'Personal API keys', click 'Create key'")
+	fmt.Println("  3. Copy the generated key")
+	fmt.Println()
+	fmt.Println("Opening Linear settings in your browser...")
+	fmt.Println()
+
+	// Open browser (fire-and-forget, don't block on errors)
+	if err := browser.OpenURL("https://linear.app/settings/account/security"); err != nil {
+		fmt.Println("Could not open browser automatically.")
+		fmt.Println("Please visit: https://linear.app/settings/account/security")
+		fmt.Println()
+	}
+
 	fmt.Print("Enter your Linear API key: ")
 
 	// Read password (hidden input)
