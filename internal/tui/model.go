@@ -2,8 +2,6 @@ package tui
 
 import (
 	"github.com/charmbracelet/bubbles/list"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/user/git-linear/internal/git"
 	"github.com/user/git-linear/internal/linear"
 )
 
