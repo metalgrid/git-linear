@@ -1,6 +1,10 @@
 package tui
 
 import (
+	"regexp"
+	"strings"
+	"unicode"
+
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -8,6 +12,27 @@ import (
 )
 
 var prefixStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("240"))
+
+// sanitizeSuffix sanitizes a branch name suffix (without prefix combination or length truncation)
+func sanitizeSuffix(s string) string {
+	s = strings.ToLower(s)
+	s = strings.ReplaceAll(s, " ", "-")
+	s = removeNonASCII(s)
+	s = regexp.MustCompile(`[^a-z0-9-]`).ReplaceAllString(s, "")
+	s = regexp.MustCompile(`-+`).ReplaceAllString(s, "-")
+	s = strings.Trim(s, "-")
+	return s
+}
+
+// removeNonASCII removes all non-ASCII characters from a string
+func removeNonASCII(s string) string {
+	return strings.Map(func(r rune) rune {
+		if r > unicode.MaxASCII {
+			return -1
+		}
+		return r
+	}, s)
+}
 
 // BranchEditor wraps textinput for editing branch names with locked prefix
 type BranchEditor struct {
@@ -22,7 +47,7 @@ func NewBranchEditor(prefix, defaultSuffix string) BranchEditor {
 	ti.Focus()
 	ti.CharLimit = 50
 	ti.Width = 50
-	ti.SetValue(defaultSuffix)
+	ti.SetValue(sanitizeSuffix(defaultSuffix))
 
 	return BranchEditor{
 		prefix:    prefix,
@@ -39,6 +64,13 @@ func (e BranchEditor) Init() tea.Cmd {
 func (e BranchEditor) Update(msg tea.Msg) (BranchEditor, tea.Cmd) {
 	var cmd tea.Cmd
 	e.textInput, cmd = e.textInput.Update(msg)
+
+	currentVal := e.textInput.Value()
+	sanitized := sanitizeSuffix(currentVal)
+	if sanitized != currentVal {
+		e.textInput.SetValue(sanitized)
+	}
+
 	return e, cmd
 }
 

@@ -159,10 +159,10 @@ func (e BranchEditor) Update(msg tea.Msg) (BranchEditor, tea.Cmd) {
 - `internal/tui/branchedit_test.go` - Current tests
 
 **Acceptance Criteria**:
-- [ ] `NewBranchEditor("dev-123", "Fix Login Bug")` shows "fix-login-bug" initially
-- [ ] Typing "Hello World!" in editor shows "hello-world" in real-time
-- [ ] `go test ./internal/tui/... -v` passes
-- [ ] No regression in other TUI tests
+- [x] `NewBranchEditor("dev-123", "Fix Login Bug")` shows "fix-login-bug" initially
+- [x] Typing "Hello World!" in editor shows "hello-world" in real-time
+- [x] `go test ./internal/tui/... -v` passes
+- [x] No regression in other TUI tests
 
 **Commit**: YES
 - Message: `fix(tui): add real-time sanitization to branch editor`
