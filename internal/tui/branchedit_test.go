@@ -17,12 +17,12 @@ var _ = Describe("BranchEditor", func() {
 	Describe("Value", func() {
 		It("returns sanitized full branch name", func() {
 			editor := tui.NewBranchEditor("dev-123", "Fix Login Bug")
-			Expect(editor.Value()).To(Equal("dev-123-fix-login-bug"))
+			Expect(editor.Value()).To(Equal("dev-123-Fix-Login-Bug"))
 		})
 
 		It("handles special characters in suffix", func() {
 			editor := tui.NewBranchEditor("dev-456", "Hello! @World#")
-			Expect(editor.Value()).To(Equal("dev-456-hello-world"))
+			Expect(editor.Value()).To(Equal("dev-456-Hello-World"))
 		})
 
 		It("handles empty suffix", func() {

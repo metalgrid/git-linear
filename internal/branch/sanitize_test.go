@@ -19,15 +19,15 @@ var _ = Describe("Sanitize", func() {
 	})
 
 	It("slugifies title with spaces", func() {
-		Expect(Sanitize("DEV-1", "Fix Login Bug")).To(Equal("dev-1-fix-login-bug"))
+		Expect(Sanitize("DEV-1", "Fix Login Bug")).To(Equal("dev-1-Fix-Login-Bug"))
 	})
 
 	It("removes special characters", func() {
-		Expect(Sanitize("DEV-1", "Hello! @World#")).To(Equal("dev-1-hello-world"))
+		Expect(Sanitize("DEV-1", "Hello! @World#")).To(Equal("dev-1-Hello-World"))
 	})
 
 	It("removes emoji and unicode", func() {
-		Expect(Sanitize("DEV-1", "Fix 🔐 Auth")).To(Equal("dev-1-fix-auth"))
+		Expect(Sanitize("DEV-1", "Fix 🔐 Auth")).To(Equal("dev-1-Fix-Auth"))
 	})
 
 	It("collapses multiple hyphens", func() {
@@ -43,5 +43,29 @@ var _ = Describe("Sanitize", func() {
 
 	It("returns just identifier if title sanitizes to empty", func() {
 		Expect(Sanitize("DEV-1", "!@#$%")).To(Equal("dev-1"))
+	})
+
+	It("preserves uppercase letters", func() {
+		Expect(Sanitize("DEV-1", "Fix Login Bug")).To(Equal("dev-1-Fix-Login-Bug"))
+	})
+
+	It("allows underscores", func() {
+		Expect(Sanitize("DEV-1", "fix_login_bug")).To(Equal("dev-1-fix_login_bug"))
+	})
+
+	It("allows dots", func() {
+		Expect(Sanitize("DEV-1", "v1.0.0")).To(Equal("dev-1-v1.0.0"))
+	})
+
+	It("allows slashes", func() {
+		Expect(Sanitize("DEV-1", "feature/login")).To(Equal("dev-1-feature/login"))
+	})
+
+	It("blocks consecutive dots", func() {
+		Expect(Sanitize("DEV-1", "v1..0")).To(Equal("dev-1-v1-0"))
+	})
+
+	It("still removes invalid Git characters", func() {
+		Expect(Sanitize("DEV-1", "Fix~Login@Bug")).To(Equal("dev-1-FixLoginBug"))
 	})
 })

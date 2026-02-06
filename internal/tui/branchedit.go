@@ -15,10 +15,11 @@ var prefixStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("240"))
 
 // sanitizeSuffix sanitizes a branch name suffix (without prefix combination or length truncation)
 func sanitizeSuffix(s string) string {
-	s = strings.ToLower(s)
 	s = strings.ReplaceAll(s, " ", "-")
 	s = removeNonASCII(s)
-	s = regexp.MustCompile(`[^a-z0-9-]`).ReplaceAllString(s, "")
+	// Consecutive dots are invalid in Git refs
+	s = regexp.MustCompile(`\.\.+`).ReplaceAllString(s, "-")
+	s = regexp.MustCompile(`[^a-zA-Z0-9-_./]`).ReplaceAllString(s, "")
 	s = regexp.MustCompile(`-+`).ReplaceAllString(s, "-")
 	s = strings.Trim(s, "-")
 	return s

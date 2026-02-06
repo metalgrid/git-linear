@@ -19,15 +19,17 @@ func Sanitize(identifier, title string) string {
 	// Lowercase identifier
 	identifier = strings.ToLower(identifier)
 
-	// Slugify title: lowercase and replace spaces with hyphens
-	title = strings.ToLower(title)
+	// Slugify title: replace spaces with hyphens
 	title = strings.ReplaceAll(title, " ", "-")
 
 	// Remove non-ASCII characters (emoji, unicode)
 	title = removeNonASCII(title)
 
-	// Remove all chars except [a-z0-9-]
-	title = regexp.MustCompile(`[^a-z0-9-]`).ReplaceAllString(title, "")
+	// Consecutive dots are invalid in Git refs
+	title = regexp.MustCompile(`\.\.+`).ReplaceAllString(title, "-")
+
+	// Remove all chars except [a-zA-Z0-9-_./]
+	title = regexp.MustCompile(`[^a-zA-Z0-9-_./]`).ReplaceAllString(title, "")
 
 	// Collapse multiple hyphens to single
 	title = regexp.MustCompile(`-+`).ReplaceAllString(title, "-")
